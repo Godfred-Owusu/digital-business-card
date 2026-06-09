@@ -1,93 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Digital Business Card</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body class="bg-slate-100 font-sans min-h-screen flex justify-center items-start sm:items-center p-0 sm:p-4">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <div class="w-full max-w-md bg-white shadow-2xl overflow-hidden sm:rounded-3xl min-h-screen sm:min-h-0 flex flex-col">
-    
-    <div class="bg-gradient-to-b from-blue-600 to-blue-900 text-white pt-12 pb-20 px-6 text-center relative flex flex-col items-center">
-      
-      <div class="relative w-28 h-28 mb-4">
-        <img class="w-full h-full rounded-full object-cover border-2 border-white/20" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=256&q=80" alt="Profile Picture">
-        <span class="absolute bottom-1 right-1 bg-blue-500 border-2 border-blue-900 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center">
-          <i class="fas fa-check"></i>
-        </span>
-      </div>
-
-      <h1 class="text-2xl font-bold tracking-wide">John Doe</h1>
-      <p class="text-blue-200 text-sm mt-1">Product Designer</p>
-      <p class="text-blue-300 text-xs mt-0.5">Acme Solutions</p>
-    </div>
-
-    <div class="px-5 pb-8 -mt-12 flex-1 bg-slate-50 rounded-t-3xl pt-6 z-10">
-      
-      <div class="grid grid-cols-4 gap-3 mb-6">
-        <a href="tel:+15551234567" class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105">
-          <i class="fas fa-phone text-slate-700 text-lg mb-1"></i>
-          <span class="text-[11px] font-medium text-slate-500">Call</span>
-        </a>
-        <a href="mailto:john@acmesolutions.com" class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105">
-          <i class="fas fa-envelope text-slate-700 text-lg mb-1"></i>
-          <span class="text-[11px] font-medium text-slate-500">Email</span>
-        </a>
-        <a href="https://acmesolutions.com" target="_blank" class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105">
-          <i class="fas fa-globe text-slate-700 text-lg mb-1"></i>
-          <span class="text-[11px] font-medium text-slate-500">Website</span>
-        </a>
-        <button onclick="downloadVCard()" class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105 cursor-pointer">
-          <i class="fas fa-user-plus text-slate-700 text-lg mb-1"></i>
-          <span class="text-[11px] font-medium text-slate-500">Save</span>
-        </button>
-      </div>
-
-      <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-6">
-        <h2 class="text-sm font-bold text-slate-800 mb-2">About Me</h2>
-        <p class="text-sm text-slate-600 leading-relaxed">
-          I help brands grow through innovative design solutions.
-        </p>
-      </div>
-
-      <div class="mb-6">
-        <h2 class="text-sm font-bold text-slate-800 mb-3 px-1">Connect</h2>
-        <div class="flex gap-3">
-          <a href="#" class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-600 transition">
-            <i class="fab fa-linkedin-in text-lg"></i>
-          </a>
-          <a href="#" class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-sky-500 transition">
-            <i class="fab fa-twitter text-lg"></i>
-          </a>
-          <a href="#" class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-pink-600 transition">
-            <i class="fab fa-instagram text-lg"></i>
-          </a>
-          <a href="#" class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-500 transition">
-            <i class="fab fa-behance text-lg"></i>
-          </a>
+    <title>Digital Business Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="shortcut icon"
+      href="./images/profile-image.jpeg"
+      type="image/x-icon"
+    />
+  </head>
+  <body
+    class="bg-slate-100 font-sans min-h-screen flex justify-center items-start sm:items-center p-0 sm:p-4"
+  >
+    <div
+      class="w-full max-w-md bg-white shadow-2xl overflow-hidden sm:rounded-3xl min-h-screen sm:min-h-0 flex flex-col"
+    >
+      <div
+        class="bg-gradient-to-b from-blue-600 to-blue-900 text-white pt-12 pb-20 px-6 text-center relative flex flex-col items-center"
+      >
+        <div class="relative w-28 h-28 mb-4">
+          <img
+            class="w-full h-full rounded-full object-cover border-2 border-white/20"
+            src="./images/profile-image.jpeg"
+            alt="Profile Picture"
+          />
+          <span
+            class="absolute bottom-1 right-1 bg-blue-500 border-2 border-blue-900 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center"
+          >
+            <i class="fas fa-check"></i>
+          </span>
         </div>
+
+        <h1 class="text-2xl font-bold tracking-wide">Godfred Owusu</h1>
+        <p class="text-blue-200 text-sm font-semibold mt-1">
+          AI & Software Engineer
+        </p>
+        <p class="text-blue-300 text-xs mt-0.5">Hubfinance</p>
       </div>
 
-      <div>
-        <h2 class="text-sm font-bold text-slate-800 mb-3 px-1">My Links</h2>
-        <a href="https://acmesolutions.com" target="_blank" class="w-full bg-white border border-gray-100 rounded-2xl p-4 flex items-center justify-between shadow-sm hover:bg-slate-50 transition">
-          <div class="flex items-center gap-3">
-            <i class="fas fa-link text-slate-400 text-sm"></i>
-            <span class="text-sm text-slate-700 font-medium">acmesolutions.com</span>
+      <div class="px-5 pb-8 -mt-12 flex-1 bg-slate-50 rounded-t-3xl pt-6 z-10">
+        <div class="grid grid-cols-4 gap-3 mb-6">
+          <a
+            href="tel:+33744274844"
+            class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105"
+          >
+            <i class="fas fa-phone text-slate-700 text-lg mb-1"></i>
+            <span class="text-[11px] font-medium text-slate-500">Call</span>
+          </a>
+          <a
+            href="mailto:godfredmirekuowusu@gmail.com"
+            class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105"
+          >
+            <i class="fas fa-envelope text-slate-700 text-lg mb-1"></i>
+            <span class="text-[11px] font-medium text-slate-500">Email</span>
+          </a>
+          <a
+            href="https://www.hubfinance.com/en/"
+            target="_blank"
+            class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105"
+          >
+            <i class="fas fa-globe text-slate-700 text-lg mb-1"></i>
+            <span class="text-[11px] font-medium text-slate-500">Website</span>
+          </a>
+          <button
+            onclick="downloadVCard()"
+            class="bg-white p-3 rounded-2xl shadow-sm text-center border border-gray-100 flex flex-col items-center justify-center transition hover:scale-105 cursor-pointer"
+          >
+            <i class="fas fa-user-plus text-slate-700 text-lg mb-1"></i>
+            <span class="text-[11px] font-medium text-slate-500">Save</span>
+          </button>
+        </div>
+
+        <div
+          class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 mb-6"
+        >
+          <h2 class="text-sm font-bold text-slate-800 mb-2">About Me</h2>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Software engineer by trade, AI architect by passion. I design
+            robust, next-generation systems and interactive AI experiences from
+            the ground up. Let's build something intelligent.
+          </p>
+        </div>
+
+        <div class="mb-6">
+          <h2 class="text-sm font-bold text-slate-800 mb-3 px-1">Connect</h2>
+          <div class="flex gap-3">
+            <a
+              href="https://www.linkedin.com/in/godfredmirekuowusu"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-600 transition"
+            >
+              <i class="fab fa-linkedin-in text-lg"></i>
+            </a>
+            <a
+              href="https://github.com/Godfred-Owusu"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-sky-500 transition"
+            >
+              <i class="fab fa-github text-lg"></i>
+            </a>
+            <a
+              href="https://www.instagram.com/xzhibitwatson"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-pink-600 transition"
+            >
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a
+              href="https://x.com/GodfredOwu58961"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-500 transition"
+            >
+              <i class="fab fa-twitter text-lg"></i>
+            </a>
+            <a
+              href="https://www.facebook.com/jeffter.willain.1/"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-500 transition"
+            >
+              <i class="fab fa-facebook text-lg"></i>
+            </a>
+            <a
+              href="https://www.tiktok.com/@techfred0"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-500 transition"
+            >
+              <i class="fab fa-tiktok text-lg"></i>
+            </a>
           </div>
-          <i class="fas fa-chevron-right text-slate-400 text-xs"></i>
-        </a>
+        </div>
+
+        <!-- <div>
+          <h2 class="text-sm font-bold text-slate-800 mb-3 px-1">My Links</h2>
+          <a
+            href="https://acmesolutions.com"
+            target="_blank"
+            class="w-full bg-white border border-gray-100 rounded-2xl p-4 flex items-center justify-between shadow-sm hover:bg-slate-50 transition"
+          >
+            <div class="flex items-center gap-3">
+              <i class="fas fa-link text-slate-400 text-sm"></i>
+              <span class="text-sm text-slate-700 font-medium"
+                >acmesolutions.com</span
+              >
+            </div>
+            <i class="fas fa-chevron-right text-slate-400 text-xs"></i>
+          </a>
+        </div> -->
       </div>
-
     </div>
-  </div>
 
-  <script>
-    function downloadVCard() {
-      const vcard = `BEGIN:VCARD
+    <script>
+      async function downloadVCard() {
+        const response = await fetch("/images/profile-image.jpeg");
+        const blob = await response.blob();
+
+        const base64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            resolve(reader.result.split(",")[1]); // Remove data:image/jpeg;base64,
+          };
+          reader.readAsDataURL(blob);
+        });
+
+        const vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:John Doe
 ORG:Acme Solutions
@@ -95,22 +171,25 @@ TITLE:Product Designer
 TEL;TYPE=CELL,VOICE:+15551234567
 EMAIL;TYPE=PREF,INTERNET:john@acmesolutions.com
 URL:https://acmesolutions.com
+PHOTO;ENCODING=b;TYPE=JPEG:${base64}
 END:VCARD`;
 
-      const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
+        const vcfBlob = new Blob([vcard], {
+          type: "text/vcard;charset=utf-8",
+        });
 
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'John_Doe_Contact.vcf';
-      
-      // Essential fix for standard cross-browser execution compatibility
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+        const url = URL.createObjectURL(vcfBlob);
 
-      URL.revokeObjectURL(url);
-    }
-  </script>
-</body>
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "John_Doe_Contact.vcf";
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+      }
+    </script>
+  </body>
 </html>
