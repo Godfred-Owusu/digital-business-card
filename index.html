@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Digital Business Card</title>
+    <title>Godfred Owusu - Digital Business Card</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link
       rel="stylesheet"
@@ -29,7 +29,7 @@
           <img
             class="w-full h-full rounded-full object-cover border-2 border-white/20"
             src="./images/profile-image.jpeg"
-            alt="Profile Picture"
+            alt="Godfred Owusu"
           />
           <span
             class="absolute bottom-1 right-1 bg-blue-500 border-2 border-blue-900 text-white rounded-full text-xs w-6 h-6 flex items-center justify-center"
@@ -91,98 +91,103 @@
 
         <div class="mb-6">
           <h2 class="text-sm font-bold text-slate-800 mb-3 px-1">Connect</h2>
-          <div class="flex gap-3">
+          <div class="flex flex-wrap gap-3">
             <a
               href="https://www.linkedin.com/in/godfredmirekuowusu"
+              target="_blank"
               class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-600 transition"
             >
               <i class="fab fa-linkedin-in text-lg"></i>
             </a>
             <a
               href="https://github.com/Godfred-Owusu"
-              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-sky-500 transition"
+              target="_blank"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-slate-900 transition"
             >
               <i class="fab fa-github text-lg"></i>
             </a>
             <a
               href="https://www.instagram.com/xzhibitwatson"
+              target="_blank"
               class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-pink-600 transition"
             >
               <i class="fab fa-instagram text-lg"></i>
             </a>
             <a
               href="https://x.com/GodfredOwu58961"
-              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-500 transition"
+              target="_blank"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-sky-500 transition"
             >
               <i class="fab fa-twitter text-lg"></i>
             </a>
             <a
               href="https://www.facebook.com/jeffter.willain.1/"
-              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-500 transition"
+              target="_blank"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-700 transition"
             >
               <i class="fab fa-facebook text-lg"></i>
             </a>
             <a
               href="https://www.tiktok.com/@techfred0"
-              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-blue-500 transition"
+              target="_blank"
+              class="w-11 h-11 bg-white border border-gray-100 rounded-xl flex items-center justify-center shadow-sm text-slate-700 hover:text-black transition"
             >
               <i class="fab fa-tiktok text-lg"></i>
             </a>
           </div>
         </div>
-
-        <!-- <div>
-          <h2 class="text-sm font-bold text-slate-800 mb-3 px-1">My Links</h2>
-          <a
-            href="https://acmesolutions.com"
-            target="_blank"
-            class="w-full bg-white border border-gray-100 rounded-2xl p-4 flex items-center justify-between shadow-sm hover:bg-slate-50 transition"
-          >
-            <div class="flex items-center gap-3">
-              <i class="fas fa-link text-slate-400 text-sm"></i>
-              <span class="text-sm text-slate-700 font-medium"
-                >acmesolutions.com</span
-              >
-            </div>
-            <i class="fas fa-chevron-right text-slate-400 text-xs"></i>
-          </a>
-        </div> -->
       </div>
     </div>
 
     <script>
       async function downloadVCard() {
-        const response = await fetch("/images/profile-image.jpeg");
-        const blob = await response.blob();
+        let base64Photo = "";
 
-        const base64 = await new Promise((resolve) => {
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            resolve(reader.result.split(",")[1]); // Remove data:image/jpeg;base64,
-          };
-          reader.readAsDataURL(blob);
-        });
+        try {
+          const response = await fetch("./images/profile-image.jpeg");
+          const blob = await response.blob();
 
-        const vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:Godfred Owusu
-ORG:Hubfinance
-TITLE:AI & Software Engineer
-TEL;TYPE=CELL,VOICE:+33744274844
-EMAIL;TYPE=PREF,INTERNET:godfred@hubfinance.com
-URL:https://www.hubfinance.com
-PHOTO;ENCODING=b;TYPE=JPEG:${base64}
-END:VCARD`;
+          const base64Raw = await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          });
+
+          // Isolate raw data and break chunks into max 72 character lines for standard vCard spec parsing
+          const cleanRaw = base64Raw.split(",")[1];
+          base64Photo = cleanRaw.match(/.{1,72}/g).join("\r\n ");
+        } catch (error) {
+          console.warn(
+            "Could not load profile image for vCard, generating text-only file instead.",
+            error,
+          );
+        }
+
+        // Formulate vCard template block
+        const vcard = [
+          "BEGIN:VCARD",
+          "VERSION:3.0",
+          "FN:Godfred Owusu",
+          "ORG:Hubfinance",
+          "TITLE:AI & Software Engineer",
+          "TEL;TYPE=CELL,VOICE:+33744274844",
+          "EMAIL;TYPE=PREF,INTERNET:godfredmirekuowusu@gmail.com",
+          "URL:https://www.hubfinance.com/en/",
+          base64Photo ? `PHOTO;ENCODING=b;TYPE=JPEG:\r\n ${base64Photo}` : "",
+          "END:VCARD",
+        ]
+          .filter(Boolean)
+          .join("\r\n");
 
         const vcfBlob = new Blob([vcard], {
           type: "text/vcard;charset=utf-8",
         });
 
         const url = URL.createObjectURL(vcfBlob);
-
         const a = document.createElement("a");
         a.href = url;
-        a.download = "John_Doe_Contact.vcf";
+        a.download = "Godfred_Owusu_Contact.vcf";
 
         document.body.appendChild(a);
         a.click();
